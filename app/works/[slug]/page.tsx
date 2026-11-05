@@ -2,6 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import works from "@/data/works.json";
 
+function ArchiveSymbols({ rating, category, warnings, status }: { rating: string; category: string; warnings: string; status: string }) {
+  const items = [
+    { key: "rating", value: rating === "NR" ? "" : rating, label: ({ G: "General Audiences", T: "Teen", M: "Mature", E: "Explicit", NR: "Not Rated" } as Record<string, string>)[rating] },
+    { key: "category", value: category === "none" ? "" : ({ "F/F": "♀", "F/M": "♀♂", "M/M": "♂", Gen: "◇", Multi: "✣", Other: "✧" } as Record<string, string>)[category] || "", label: category === "none" ? "Categoria não especificada" : category },
+    { key: "warning", value: warnings === "none" ? "" : warnings === "choose_not_to_warn" ? "?" : "!", label: warnings === "none" ? "Nenhum aviso do arquivo indicado" : warnings === "choose_not_to_warn" ? "Autoria optou por não usar avisos" : "Aviso de conteúdo aplicável" },
+    { key: "status", value: status === "complete" ? "✓" : "⊘", label: status === "complete" ? "Obra completa" : "Obra em andamento" }
+  ];
+  return <div className="archive-symbols" aria-label="Classificação da obra">
+    {items.map(item => <span key={item.key} className={`archive-symbol symbol-${item.key} ${item.value ? "has-symbol" : "is-blank"}`} title={item.label} aria-label={item.label}>{item.value}</span>)}
+  </div>;
+}
+
+
+
 type Work = (typeof works)[number];
 
 export function generateStaticParams() {
@@ -37,13 +51,10 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
       <article className="reader-wrap">
         <Link className="back-link" href="/">← Voltar para todas as obras</Link>
         <header className="reader-header">
-          <div className="work-badges">
-            <span className="metadata-badge rating">{work.rating}</span>
-            {work.warnings.map((warning) => <span className="metadata-badge" key={warning}>{warning}</span>)}
-            {work.category.map((category) => <span className="metadata-badge category" key={category}>{category}</span>)}
-            <span className={`metadata-badge ${work.status === "Completa" ? "complete" : "ongoing"}`}>{work.status}</span>
+          <div className="reader-title-row">
+            <ArchiveSymbols rating={work.rating} category={work.category} warnings={work.warnings} status={work.status} />
+            <h1>{work.title}</h1>
           </div>
-          <h1>{work.title}</h1>
           <p className="byline">por <span className="author-name">{work.author}</span></p>
           <p className="reader-summary">{work.summary}</p>
         </header>
