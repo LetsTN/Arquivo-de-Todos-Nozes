@@ -3,8 +3,16 @@ import works from "@/data/works.json";
 
 type Work = (typeof works)[number];
 
-function Metadata({ children, tone = "" }: { children: React.ReactNode; tone?: string }) {
-  return <span className={`metadata-badge ${tone}`}>{children}</span>;
+function ArchiveSymbols({ rating, category, warnings, status }: { rating: string; category: string; warnings: string; status: string }) {
+  const items = [
+    { key: "rating", value: rating === "NR" ? "" : rating, label: ({ G: "General Audiences", T: "Teen", M: "Mature", E: "Explicit", NR: "Not Rated" } as Record<string, string>)[rating] },
+    { key: "category", value: category === "none" ? "" : ({ "F/F": "♀", "F/M": "♀♂", "M/M": "♂", Gen: "◇", Multi: "✣", Other: "✧" } as Record<string, string>)[category] || "", label: category === "none" ? "Categoria não especificada" : category },
+    { key: "warning", value: warnings === "none" ? "" : warnings === "choose_not_to_warn" ? "?" : "!", label: warnings === "none" ? "Nenhum aviso do arquivo indicado" : warnings === "choose_not_to_warn" ? "Autoria optou por não usar avisos" : "Aviso de conteúdo aplicável" },
+    { key: "status", value: status === "complete" ? "✓" : "⊘", label: status === "complete" ? "Obra completa" : "Obra em andamento" }
+  ];
+  return <div className="archive-symbols" aria-label="Classificação da obra">
+    {items.map(item => <span key={item.key} className={`archive-symbol symbol-${item.key} ${item.value ? "has-symbol" : "is-blank"}`} title={item.label} aria-label={item.label}>{item.value}</span>)}
+  </div>;
 }
 
 export default function Home() {
@@ -52,13 +60,10 @@ export default function Home() {
         <div className="work-list">
           {sortedWorks.map((work: Work) => (
             <article className="work-entry" key={work.slug}>
-              <div className="work-badges" aria-label="Classificação da obra">
-                <Metadata tone="rating">{work.rating}</Metadata>
-                {work.warnings.map((warning) => <Metadata key={warning}>{warning}</Metadata>)}
-                {work.category.map((category) => <Metadata key={category} tone="category">{category}</Metadata>)}
-                <Metadata tone={work.status === "Completa" ? "complete" : "ongoing"}>{work.status}</Metadata>
+              <div className="work-heading">
+                <ArchiveSymbols rating={work.rating} category={work.category} warnings={work.warnings} status={work.status} />
+                <h3 className="work-title">              <Link href={`/works/${work.slug}`}>{work.title}</Link></h3>
               </div>
-              <h3 className="work-title"><Link href={`/works/${work.slug}`}>{work.title}</Link></h3>
               <p className="byline">por <span className="author-name">{work.author}</span></p>
               <dl className="work-details">
                 <div><dt>Fandoms:</dt><dd>{work.fandoms.join(", ")}</dd></div>
