@@ -130,3 +130,32 @@ a { color: var(--red); }
 .symbol-category[data-value="Gen"] { background:#4c9b74; border-color:#4c9b74; }
 .symbol-category[data-value="Multi"] { background:#528e79; border-color:#528e79; }
 .symbol-category[data-value="Other"] { background:#777; border-color:#777; }
+
+
+/* Tipografia ampliada para melhorar a leitura */
+body { font-size: 15px; }
+.main-nav { font-size: 14px; }
+.archive-intro p:last-child { font-size: 15px; }
+.section-intro { font-size: 14px; }
+.collection-count { font-size: 11px; }
+.work-title { font-size: 24px; }
+.byline { font-size: 12px; }
+.work-details { font-size: 13px; line-height: 1.6; }
+.summary { font-size: 14px; line-height: 1.7; }
+.metadata-badge { font-size: 11px; }
+.tags span { font-size: 11px; padding: 4px 7px; }
+.work-footer { font-size: 11px; }
+.reader-summary { font-size: 15px; }
+.reader-meta div { font-size: 13px; }
+.back-link { font-size: 13px; }
+.empty-story { font-size: 14px; }
+.footer p { font-size: 13px; }
+@media (max-width: 600px) {
+  .main-nav { font-size: 12px; }
+  .work-title { font-size: 21px; }
+  .byline { font-size: 12px; }
+  .work-details { font-size: 12px; }
+  .summary { font-size: 13px; }
+  .reader-summary { font-size: 14px; }
+  .reader-meta div { font-size: 12px; }
+}
