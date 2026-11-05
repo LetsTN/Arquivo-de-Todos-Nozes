@@ -103,3 +103,25 @@ a { color: var(--red); }
   .reader-meta { grid-template-columns: 1fr; gap: 9px; }
   .chapter-text { font-size: 15px; }
 }
+
+/* AO3-inspired square classification symbols */
+.work-heading, .reader-title-row { display:flex; align-items:flex-start; gap:12px; }
+.work-heading .work-title { min-width:0; }
+.archive-symbols { display:grid; grid-template-columns:repeat(2,24px); grid-template-rows:repeat(2,24px); gap:2px; flex:0 0 auto; }
+.archive-symbol { width:24px; height:24px; display:grid; place-items:center; border:1px solid #d8d8d8; background:#fff; color:#fff; font-family:Arial,sans-serif; font-size:18px; font-weight:700; line-height:1; }
+.symbol-rating { background:#e87500; border-color:#e87500; font-size:17px; }
+.symbol-category { background:#0757bd; border-color:#0757bd; font-size:19px; }
+.symbol-warning { background:#fff; border-color:#d5d5d5; color:#fff; }
+.symbol-warning.has-symbol { background:#b00008; border-color:#b00008; font-size:20px; }
+.symbol-warning.has-symbol[aria-label^="Autoria"] { background:#e87500; border-color:#e87500; }
+.symbol-status { background:#b00008; border-color:#b00008; font-size:20px; }
+.symbol-status[aria-label="Obra completa"] { background:#287a42; border-color:#287a42; }
+.reader-title-row { align-items:center; gap:16px; }
+.reader-title-row h1 { margin-top:0; }
+.reader-header .reader-title-row + .byline { margin-top:7px; }
+@media (max-width:480px) {
+  .archive-symbols { grid-template-columns:repeat(2,21px); grid-template-rows:repeat(2,21px); }
+  .archive-symbol { width:21px; height:21px; font-size:16px; }
+  .work-heading { gap:9px; }
+  .reader-title-row { align-items:flex-start; gap:10px; }
+}
