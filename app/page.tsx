@@ -11,7 +11,7 @@ function ArchiveSymbols({ rating, category, warnings, status }: { rating: string
     { key: "status", value: status === "complete" ? "✓" : "⊘", label: status === "complete" ? "Obra completa" : "Obra em andamento" }
   ];
   return <div className="archive-symbols" aria-label="Classificação da obra">
-    {items.map(item => <span key={item.key} className={`archive-symbol symbol-${item.key} ${item.value ? "has-symbol" : "is-blank"}`} title={item.label} aria-label={item.label}>{item.value}</span>)}
+    {items.map(item => <span key={item.key} className={`archive-symbol symbol-${item.key} ${item.value ? "has-symbol" : "is-blank"}`} data-value={item.key === "category" ? category : undefined} title={item.label} aria-label={item.label}>{item.value}</span>)}
   </div>;
 }
 
