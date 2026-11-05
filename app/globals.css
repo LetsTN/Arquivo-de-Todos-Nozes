@@ -125,3 +125,10 @@ a { color: var(--red); }
   .work-heading { gap:9px; }
   .reader-title-row { align-items:flex-start; gap:10px; }
 }
+
+.symbol-category[data-value="F/F"] { background:#e75b91; border-color:#e75b91; }
+.symbol-category[data-value="F/M"] { background:#8151b5; border-color:#8151b5; }
+.symbol-category[data-value="M/M"] { background:#0757bd; border-color:#0757bd; }
+.symbol-category[data-value="Gen"] { background:#4c9b74; border-color:#4c9b74; }
+.symbol-category[data-value="Multi"] { background:#528e79; border-color:#528e79; }
+.symbol-category[data-value="Other"] { background:#777; border-color:#777; }
