@@ -16,7 +16,7 @@ function ArchiveSymbols({ rating, category, warnings, status }: { rating: string
 
 
 
-type Work = (typeof works)[number];
+type Work = Omit<(typeof works)[number], "wordCount"> & { wordCount: number | null };
 
 export function generateStaticParams() {
   return works.map((work) => ({ slug: work.slug }));
