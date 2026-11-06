@@ -31,15 +31,15 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
     <main className="archive-shell">
       <div className="utility-bar">
         <div className="utility-inner">
-          <span>Um arquivo para preservar aquilo que jamais deveria ter sido escrito.</span>
-          <span>Feito de nozes, caos e más decisões</span>
+          <span>Um arquivo para preservar aquilo que não precisaria ser preservado.</span>
+          <span>Feito de nozes pra nozes</span>
         </div>
       </div>
       <header className="site-header">
         <div className="header-inner">
           <Link className="brand" href="/">
             <span className="brand-mark">ATN</span>
-            <span><strong>Arquivo de Todos Nozes</strong><small>um arquivo de fanworks questionáveis</small></span>
+            <span><strong>Arquivo de Todos Nozes</strong><small>um arquivo de fanfics questionáveis</small></span>
           </Link>
           <nav className="main-nav" aria-label="Navegação principal">
             <Link className="active" href="/">Obras</Link>
@@ -87,8 +87,8 @@ export default function WorkPage({ params }: { params: { slug: string } }) {
 
       <footer className="footer">
         <div className="footer-brand">Arquivo de Todos Nozes</div>
-        <p>Feito com carinho, caos e uma quantidade preocupante de referências.</p>
-        <small>Projeto independente de paródia e arquivo de fanworks. Não afiliado ao AO3.</small>
+        <p>Feito com carinho e surto.</p>
+        <small>Me interna por favor. Não afiliado ao AO3.</small>
       </footer>
     </main>
   );
